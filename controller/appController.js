@@ -20,7 +20,7 @@ const getbill = (req, res) => {
     theme: "default",
     product: {
       name: "UNP-GYM",
-      link: "https://unp-gym.example.com",
+      link: "https://unp-gym.com",
     },
   });
 

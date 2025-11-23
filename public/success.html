@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pendaftaran Berhasil - UNP-GYM</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      .text-neon-400 {
+        color: #5bff9b;
+      }
+      .bg-neon-400 {
+        background-color: #5bff9b;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-slate-900 flex items-center justify-center p-4 relative">
+    <div
+      class="absolute top-0 left-0 w-full h-1/2 bg-neon-400/5 blur-[120px] pointer-events-none"
+    ></div>
+
+    <div class="max-w-3xl w-full space-y-8">
+      <!-- Header Success -->
+      <div class="text-center space-y-4">
+        <div
+          class="w-24 h-24 bg-neon-400/20 rounded-full flex items-center justify-center mx-auto mb-6 ring-1 ring-neon-400/50"
+        >
+          <i data-lucide="check" class="w-12 h-12 text-neon-400"></i>
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl font-bold text-white">PENDAFTARAN BERHASIL</h1>
+
+        <p class="text-xl text-slate-400" id="successMessage"></p>
+      </div>
+
+      <!-- Email Card -->
+      <div
+        class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl relative"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-400 to-cyan-400"
+        ></div>
+
+        <!-- Header card -->
+        <div
+          class="p-6 border-b border-slate-700 flex items-center justify-between bg-slate-800/80"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center">
+              <i data-lucide="mail" class="w-5 h-5 text-slate-300"></i>
+            </div>
+
+            <div>
+              <h3 class="text-sm font-semibold text-slate-200" id="emailTarget"></h3>
+              <p class="text-xs text-green-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                Baru saja
+              </p>
+            </div>
+          </div>
+
+          <!-- Tombol kembali (menggantikan 'auto generated') -->
+          <a
+            href="/"
+            class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-white text-sm flex items-center gap-2 transition"
+          >
+            <i data-lucide="home" class="w-4 h-4"></i> Kembali
+          </a>
+        </div>
+
+        <div class="p-8 space-y-6 bg-slate-900/30">
+          <div>
+            <h4 class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">Subjek</h4>
+            <p class="text-lg font-medium text-white" id="emailSubject"></p>
+          </div>
+
+          <div class="space-y-2">
+            <h4 class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">
+              Isi Pesan
+            </h4>
+
+            <div
+              class="bg-white/5 p-6 rounded-xl border border-white/5 text-slate-300 leading-relaxed italic relative"
+            >
+              <span class="absolute top-4 left-4 text-4xl text-white/10 font-serif leading-none"
+                >"</span
+              >
+              <p id="emailBody"></p>
+              <span class="absolute bottom-4 right-4 text-4xl text-white/10 font-serif leading-none"
+                >"</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-slate-800/80 p-4 border-t border-slate-700 text-center text-sm text-slate-500"
+        >
+          Silakan cek kotak masuk atau folder spam email Anda.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      const userData = JSON.parse(sessionStorage.getItem("userData"));
+      const emailContent = JSON.parse(sessionStorage.getItem("emailContent"));
+
+      if (!userData) {
+        window.location.href = "/";
+      }
+
+      document.getElementById("successMessage").innerHTML =
+        "Selamat datang di UNP-GYM, <span class='text-neon-400 font-semibold'>" +
+        userData.fullName +
+        "</span>";
+
+      document.getElementById("emailTarget").textContent = "Email terkirim ke: " + userData.email;
+
+      document.getElementById("emailSubject").textContent = emailContent.subject;
+      document.getElementById("emailBody").textContent = emailContent.body;
+    </script>
+  </body>
+</html>
